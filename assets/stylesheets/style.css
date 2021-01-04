@@ -1,0 +1,210 @@
+@import "../webfonts/mateifont/stylesheet.css";
+
+* {
+  margin:0;
+}
+
+:root {
+  font-size: 16px;
+}
+
+body {
+  --yellow: #FFF500;
+  background-color: #000431;
+  color: var(--yellow);
+  height:100vh;
+
+  --border-distance-w: 3vw;
+  --border-distance-h: 3vh;
+
+  --headline-height: 174px;
+  --subline-height: 80px;
+
+  --container-height: calc(100vh - 2 * var(--border-distance-h));
+
+  --benjamin-height: calc(var(--container-height) - var(--headline-height) - var(--subline-height));
+  --benjamin-width: calc(var(--container-height) - var(--headline-height) - var(--subline-height) * 1 / 1.22);
+  --background-sphere-radius: calc(var(--benjamin-height) / 1.15);
+  --foreground-sphere-radius: calc(var(--benjamin-height) / 10);
+
+  /*overflow: hidden;*/
+}
+
+.container {
+  position: absolute;
+  width: calc(100vw - 2 * var(--border-distance-w));
+  height: calc(100vh - 2 * var(--border-distance-h));
+  /*top:calc(var(--border-distance-h) - 7px);*/
+  left:calc(var(--border-distance-w) - 7px);
+  border: solid 7px #FFF500;
+  overflow: hidden;
+  display: flex;
+  flex-direction:column;
+}
+
+.headline{
+  font-size: 164px;
+  font-family: "gtfxebl";
+  height: var(--headline-height);
+  border-bottom: solid 7px var(--yellow);
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  flex-wrap:nowrap;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.headline .sliding-headline {
+  margin-top: -32px;
+  animation: textTranslation 40s infinite linear;
+}
+
+.sliding-headline span:nth-child(even){
+  color:#000431;
+  text-shadow: 1px 1px 0 #FFF500, -1px -1px 0 #FFF500, -1px 1px 0 #FFF500, 1px -1px 0 #FFF500;
+}
+
+@keyframes textTranslation {
+  0% {
+    transform: translateX(0%);
+  }
+ 100% {
+    transform: translateX(-100%);
+  }
+}
+
+.activity {
+  border-bottom:solid 7px #FFF500;
+  height: var(--subline-height);
+  font-size: 47px;
+  font-family: "gtfxebo";
+  width:500%;
+  display: flex;
+  flex-wrap:nowrap;
+  white-space: nowrap;
+  align-items: center;
+}
+
+.activity .sliding-headline{
+  margin-top: -7px;
+  animation: textTranslation 20s infinite linear;
+}
+
+.profile {
+  flex-grow: 1;
+  font-family: "gtfr";
+  position: relative;
+}
+
+.picture {
+  width: calc(var(--container-height) - var(--headline-height) - var(--subline-height) * 1 / 1.22);
+  align-self: flex-end;
+  margin-left: 20px;
+  align-self:flex-end;
+  position: absolute;
+  bottom: 0;
+  left: var(--border-distance-h);
+}
+
+.big-circle {
+  position: absolute;
+  bottom: calc(var(--border-distance-h) / 2);
+  left: calc(var(--border-distance-h) / 2);
+  width: var(--background-sphere-radius);
+  padding-bottom: var(--background-sphere-radius); /* Pourquoi pas la height plutot? */
+  border-radius: 50%;
+  background-color: #FFF500;
+  z-index: -1;
+}
+.small-circle {
+  position: absolute;
+  bottom: calc(var(--border-distance-h) * 2);
+  left: 50vh;
+  width: var(--foreground-sphere-radius);
+  padding-bottom: var(--foreground-sphere-radius); /* Pourquoi pas la height plutot? */
+  border-radius: 50%;
+  background-color: #FFF500;
+}
+
+.description {
+  position: absolute;
+  top:0;
+  right:0;
+  width: calc(100% - calc(var(--container-height) - var(--headline-height) - var(--subline-height) * 1 / 1.22));
+  max-width: 376px;
+  display:flex;
+  flex-direction:column;
+  justify-content: center;
+  padding:35px;
+  font-size:18px;
+}
+
+.underline{
+  text-decoration: underline;
+  text-underline-position: under;
+}
+
+
+.email {
+  display:flex;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.email > img {
+  height: 1em;
+  filter: invert(79%) sepia(70%) saturate(2149%) hue-rotate(9deg) brightness(115%) contrast(109%);
+  margin-right: 10px;
+}
+
+
+@media screen and (max-width: 1024px) {
+
+  body {
+    min-height:100vh;
+    height: fit-content;
+    padding: 0.8rem;
+  }
+
+  .container {
+    position: relative;
+    width: auto;
+    height: auto;
+    left:0;
+  }
+
+  .profile {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .description {
+    width: 100%;
+    position: relative;
+    padding: 30px 0;
+    max-width: 80%;
+    margin: auto;
+  }
+
+  .big-circle {
+    width: 45%;
+    padding-bottom: 45%;
+  }
+
+  .picture {
+    position: relative;
+    width: 70%;
+    align-self:center;
+    margin-bottom: -0.25rem;
+  }
+
+  .small-circle {
+    width: 5%;
+    padding-bottom: 5%;
+    left:34vh;
+  }
+
+  }
+}
+
